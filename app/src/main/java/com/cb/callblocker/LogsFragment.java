@@ -13,10 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,6 +31,7 @@ public class LogsFragment extends Fragment {
     private EditText mPhoneNumber ;
     private EditText mEdtDateStart ;
     private EditText mEdtDateEnd ;
+    private Spinner mSpinnerSearchCriteria;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,12 +90,21 @@ public class LogsFragment extends Fragment {
             }
         });
 
+        mSpinnerSearchCriteria = view.findViewById(R.id.searchCriteria) ;
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(view.getContext(),
+                R.array.search_criteria, android.R.layout.simple_spinner_item);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinnerSearchCriteria.setAdapter(adapter);
+
         mPhoneNumber = (EditText)view.findViewById(R.id.textSearchNumber);
         mPhoneNumber.setText("");
         searchData();
 
     }
     private void searchData() {
+        int id = mSpinnerSearchCriteria.getSelectedItemPosition();
+
         mStartDate.set(Calendar.HOUR_OF_DAY, 0);
         mStartDate.set(Calendar.MINUTE, 0);
         mStartDate.set(Calendar.SECOND, 0);
@@ -103,21 +115,17 @@ public class LogsFragment extends Fragment {
         mEndDate.set(Calendar.SECOND, 59);
         mEndDate.set(Calendar.MILLISECOND, 999);
 
-
         String number = mPhoneNumber.getText().toString();
-        if ( TextUtils.isEmpty(number) )
-            number = "%";
+        //if ( TextUtils.isEmpty(number) )
+        //<    number = "";
         long startDate = mStartDate.getTimeInMillis() / 1000;
         long endDate = mEndDate.getTimeInMillis() / 1000;
 
 
-        ArrayList<CallData> arrayList = SQLiteDatabaseHandler.getInstance(getContext()).allCallData(startDate, endDate, number);
+        ArrayList<CallData> arrayList = SQLiteDatabaseHandler.getInstance(getContext()).allCallData(startDate, endDate, number, id);
         ListView lv = (ListView) getView().findViewById(R.id.lstCalls);
         CallDataAdapter callDataAdapter = new CallDataAdapter(getContext(), arrayList);
         lv.setAdapter(callDataAdapter);
-        //if ( CallBlockerService.isServiceCreated() )
-        //    updateServiceNotification();
-
     }
 
 }

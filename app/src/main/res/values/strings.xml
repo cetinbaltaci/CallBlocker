@@ -29,8 +29,17 @@
     <string name="tab_text_3">Settings</string>
     <string name="tab_text_4">About</string>
     <string name="text_servicestatus">Service Status</string>
-    <string name="text_servicestatus_running">Çalışıyor</string>
-    <string name="text_servicestatus_stopped">Durduruldu</string>
+    <string name="text_servicestatus_running">Running...</string>
+    <string name="text_servicestatus_stopped">Stopped</string>
     <string name="text_email">cetinbaltaci@gmail.com</string>
     <string name="text_github">https://github.com/cetinbaltaci/BinderExample</string>
+
+    <string-array name="search_criteria">
+        <item>Contain</item>
+        <item>Start With</item>
+        <item>Equal</item>
+        <item>Not Contain</item>
+        <item>Not Start With</item>
+        <item>Not Equal</item>
+    </string-array>
 </resources>

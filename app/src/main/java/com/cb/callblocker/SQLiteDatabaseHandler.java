@@ -105,13 +105,29 @@ public class SQLiteDatabaseHandler extends SQLiteOpenHelper {
         return callDatas;
     }
 
-    public ArrayList<CallData> allCallData(long startDate, long endDate, String number) {
+    public ArrayList<CallData> allCallData(long startDate, long endDate, String number, int searchCriteria) {
+        String phoneNunmber = number;
+        String notStr = ( searchCriteria > 2 )  ? "NOT" : "";
+         switch (searchCriteria) {
+             case 0:
+             case 3: // contian
+                phoneNunmber = "%" + number + "%" ;
+                break ;
+            case 1:
+            case 4: // Start with
+                phoneNunmber = number + "%" ;
+                break ;
+             case 2:
+             case 5: // Equal
+                phoneNunmber = number  ;
+                break ;
+        }
 
         ArrayList<CallData> callDatas = new ArrayList<CallData>();
         String query = "SELECT  * FROM " + TABLE_NAME
                 + " WHERE 1 = 1"
                 + " AND calltime BETWEEN " + String.valueOf(startDate) + " AND " + String.valueOf(endDate)
-                + " AND number LIKE '"+ number + "'"
+                + " AND number " + notStr +  " LIKE '"+ phoneNunmber + "'"
                 + " ORDER BY " + KEY_DATE + " DESC";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);

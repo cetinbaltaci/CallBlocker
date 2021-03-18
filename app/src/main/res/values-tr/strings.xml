@@ -35,5 +35,13 @@
     <string name="text_email">cetinbaltaci@gmail.com</string>
     <string name="text_github">https://github.com/cetinbaltaci/BinderExample</string>
 
+    <string-array name="search_criteria">
+        <item>İçeren</item>
+        <item>Başlayan</item>
+        <item>Eşit</item>
+        <item>İçermeyen</item>
+        <item>Başlamayan</item>
+        <item>Eşit değil</item>
+    </string-array>
 
 </resources>
