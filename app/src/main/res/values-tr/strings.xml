@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">CallBlocker</string>
+    <string name="title_activity_main">Arama Engelleme</string>
+    <string name="title_activity_settings">Ayarlar</string>
+
+
+    <!-- Preference -->
+    <string name="title_pref_incoming_call">Gelen Aramaları Engelleme</string>
+    <string name="title_pref_general">Genel</string>
+    <string name="title_pref_incoming_call_international">Yurtdışı/Uluslararası</string>
+    <string name="title_pref_incoming_call_domestic">Yurtiçi</string>
+    <string name="title_pref_general_autostart">Açılışta otomatik çalıştırma</string>
+    <string name="title_menu_settings">Ayarlar</string>
+    <string name="title_menu_startservice">Servisi Çalıştırma</string>
+    <string name="title_menu_stopservice">Servisi Durdurma</string>
+    <string name="title_menu_about">Hakkında</string>
+
+    <string name="text_about">Bu uygulama GPL lisanlı olara Cetin BALTACI tarafında yurtiçi ve/veya yurtdışı aramları otomatik engellemek(kapatma-meşgule alma) için yapılmıştır.\Hiçbir ticari amacı yoktur.</string>
+    <string name="title_notification">Arama Engelleme</string>
+    <string name="text_notification">Servis aktif.</string>
+    <string name="text_notification_count">Engelenen arama sayısı</string>
+    <string name="title_search_date">Tarih</string>
+    <string name="title_search_number">Numara</string>
+    <string name="title_search_button">Arama</string>
+    <string name="title_end_date">Bitiş Tarihi</string>
+    <string name="title_start_date">Başlangıç Tarihi</string>
+    <string name="title_activity_main_screen">MainScreen</string>
+    <string name="tab_text_1">Genel</string>
+    <string name="tab_text_2">Liste</string>
+    <string name="tab_text_3">Ayarlar</string>
+    <string name="tab_text_4">About</string>
+    <string name="text_servicestatus">Service Status</string>
+    <string name="text_servicestatus_running">Running...</string>
+    <string name="text_servicestatus_stopped">Stoped</string>
+    <string name="text_email">cetinbaltaci@gmail.com</string>
+    <string name="text_github">https://github.com/cetinbaltaci/BinderExample</string>
+
+
+</resources>
