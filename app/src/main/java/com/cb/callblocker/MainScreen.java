@@ -78,6 +78,8 @@ public class MainScreen extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         mTabLayout.selectTab(mTabLayout.getTabAt(0));
+        if ( CallBlockerService.isServiceCreated() )
+            updateServiceNotification();
     }
 
     public static boolean startService(Context context) {
