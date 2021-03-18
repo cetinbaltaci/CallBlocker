@@ -32,7 +32,7 @@ public class AboutFragment extends Fragment {
                 HtmlCompat.FROM_HTML_MODE_LEGACY));
         txtEMail.setMovementMethod(LinkMovementMethod.getInstance());
         TextView txtGithub = (TextView) view.findViewById(R.id.txtGithub);
-        txtGithub.setText(HtmlCompat.fromHtml("<a href=\"https://github.com/cetinbaltaci/BinderExample\">CallBlocker</a>",
+        txtGithub.setText(HtmlCompat.fromHtml("<a href=\"https://github.com/cetinbaltaci/CallBlocker\">CallBlocker</a>",
                 HtmlCompat.FROM_HTML_MODE_LEGACY));
         txtGithub.setMovementMethod(LinkMovementMethod.getInstance());
     }
