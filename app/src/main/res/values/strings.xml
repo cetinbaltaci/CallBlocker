@@ -15,7 +15,7 @@
     <string name="title_menu_stopservice">Stop Service</string>
     <string name="title_menu_about">About</string>
 
-    <string name="text_about">This application is developed with GPL license by Cetin BALTACI to automatically block (hang-up) domestic and/or international calling.\nIt has no commercial purpose.</string>
+    <string name="text_about">This application is developed with licenced by GPL to automatically block (hang-up) domestic and/or international calling.\n\nIt has no commercial purpose.</string>
     <string name="text_notification">Service is active.</string>
     <string name="text_notification_count">Blocked calling count</string>
     <string name="title_search_date">Date</string>
@@ -31,8 +31,9 @@
     <string name="text_servicestatus">Service Status</string>
     <string name="text_servicestatus_running">Running...</string>
     <string name="text_servicestatus_stopped">Stopped</string>
-    <string name="text_email">cetinbaltaci@gmail.com</string>
-    <string name="text_github">https://github.com/cetinbaltaci/BinderExample</string>
+    <string name="text_email" translatable="false">cetinbaltaci@gmail.com</string>
+    <string name="text_github" translatable="false">https://github.com/cetinbaltaci/CallBlocker</string>
+    <string name="title_county_phone_code">Country Phone Code</string>
 
     <string-array name="search_criteria">
         <item>Contain</item>

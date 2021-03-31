@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -25,6 +26,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cb.callblocker.ui.main.SectionsPagerAdapter;
@@ -36,19 +38,26 @@ public class MainScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             if (checkSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_DENIED ||
-                    checkSelfPermission(Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_DENIED ||
                     checkSelfPermission(Manifest.permission.READ_CALL_LOG) == PackageManager.PERMISSION_DENIED ||
                     checkSelfPermission(Manifest.permission.ANSWER_PHONE_CALLS) == PackageManager.PERMISSION_DENIED ||
-                    checkSelfPermission(Manifest.permission.MODIFY_PHONE_STATE) == PackageManager.PERMISSION_DENIED ||
-                    checkSelfPermission(Manifest.permission.SYSTEM_ALERT_WINDOW) == PackageManager.PERMISSION_DENIED) {
+                    checkSelfPermission(Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_DENIED
+            ) {
                 String[] permissions = {Manifest.permission.READ_PHONE_STATE,
                         Manifest.permission.ANSWER_PHONE_CALLS,
-                        Manifest.permission.MODIFY_PHONE_STATE,
                         Manifest.permission.CALL_PHONE,
-                        Manifest.permission.READ_CALL_LOG,
-                        Manifest.permission.SYSTEM_ALERT_WINDOW};
+                        Manifest.permission.READ_CALL_LOG};
+                requestPermissions(permissions, 1);
+            }
+        }else if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_DENIED ||
+                    checkSelfPermission(Manifest.permission.READ_CALL_LOG) == PackageManager.PERMISSION_DENIED ||
+                    checkSelfPermission(Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_DENIED
+            ) {
+                String[] permissions = {Manifest.permission.READ_PHONE_STATE,
+                        Manifest.permission.CALL_PHONE,
+                        Manifest.permission.READ_CALL_LOG};
                 requestPermissions(permissions, 1);
             }
         }
@@ -59,6 +68,7 @@ public class MainScreen extends AppCompatActivity {
         edit.putString("CountryCode", countryCode);
         edit.commit();
         Log.d("PHONE", "countryCode: " + countryCode);
+
 
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
@@ -88,7 +98,16 @@ public class MainScreen extends AppCompatActivity {
             return true;
         }
         Intent serviceIntent = new Intent(context, CallBlockerService.class);
+/*
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ContextCompat.startForegroundService(context, serviceIntent);
+        } else {
+            context.startService(serviceIntent);
+        }
+
+ */
         ContextCompat.startForegroundService(context, serviceIntent);
+
         return CallBlockerService.isServiceCreated();
     }
     public static boolean stopService(Context context) {

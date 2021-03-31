@@ -3,6 +3,7 @@ package com.cb.callblocker;
 import android.content.Context;
 import android.graphics.Color;
 import android.telephony.PhoneNumberUtils;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,13 +41,25 @@ public class CallDataAdapter extends ArrayAdapter<CallData> {
         tvDate.setText(callData.getCallDateTime());
         //tvDate.setText(String.valueOf(callData.getCallTime()));
         String formattedNumber = PhoneNumberUtils.formatNumber(callData.getNumber(), Locale.getDefault().getCountry());
+        if (TextUtils.isEmpty(formattedNumber)) {
+            formattedNumber = callData.getNumber() ;
+        }
         tvNumber.setText(formattedNumber );
-        String code = formattedNumber.split(" ")[0];
+
+        String[] phoneFormatList = formattedNumber.split(" ");
+        String code = "" ;
         String countryID = "---";
-        if (code != null) {
+        if ( phoneFormatList.length > 0 ) {
+            code = phoneFormatList[0];
+        }
+
+        if (! TextUtils.isEmpty(code)) {
             if (code.startsWith("+"))
                 code = code.substring(1);
+            else if (code.equals("00"))
+                code = phoneFormatList[1];
             countryID = Util.getCountryDialID(code);
+            if (TextUtils.isEmpty(countryID))countryID = "---";
         }
         tvName.setText(countryID);
 

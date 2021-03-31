@@ -34,8 +34,6 @@ public class PhoneStateReceiver extends BroadcastReceiver {
 
     }
 
-
-
     private PhoneStateEventListener phoneStateEventListener;
 
     public void setPhoneStateEventListener(PhoneStateEventListener listener) {
@@ -50,7 +48,6 @@ public class PhoneStateReceiver extends BroadcastReceiver {
             SharedPreferences sharedPref = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
             String countryCode  = sharedPref.getString("CountryCode", "0");
             if (countryCode == "0") return ;
-            countryCode = "+" + countryCode;
 
 
             String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
@@ -60,8 +57,14 @@ public class PhoneStateReceiver extends BroadcastReceiver {
             boolean inCallInternational = (shared.getBoolean("inCallInternational", false));
             boolean inCallDomestic = (shared.getBoolean("inCallDomestic", false));
             boolean block = false ;
-            if (inCallInternational && !number.startsWith(countryCode) )  block = true ;
-            if (inCallDomestic && number.startsWith(countryCode) )  block = true ;
+
+            boolean internationalNumber = false ;
+
+            if (number.startsWith("+") && !number.startsWith("+" + countryCode)) internationalNumber = true  ;
+            if (number.startsWith("00") && !number.startsWith("00" + countryCode)) internationalNumber = true  ;
+
+            if (inCallInternational && internationalNumber )  block = true ;
+            if (inCallDomestic && !internationalNumber )  block = true ;
 
             if (state.equalsIgnoreCase(TelephonyManager.EXTRA_STATE_RINGING)) {
                 try {

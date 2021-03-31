@@ -1,5 +1,7 @@
 package com.cb.callblocker;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -58,6 +60,10 @@ public class StatusFragment extends Fragment {
                 text1,
                 (CallBlockerService.isServiceCreated() ) ? text2 : text3 ) );
 
+        SharedPreferences sharedPref = getContext().getSharedPreferences(getContext().getPackageName(), Context.MODE_PRIVATE);
+        String countryCode  = sharedPref.getString("CountryCode", "0");
+        TextView text_countryCode = (TextView)view.findViewById(R.id.text_country_phone_code);
+        text_countryCode.setText(countryCode);
     }
 
     private Runnable runStatus = new Runnable() {
@@ -68,9 +74,15 @@ public class StatusFragment extends Fragment {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            txtStatus.setText(String.format("%s: %s",
-                    text1,
-                    (CallBlockerService.isServiceCreated() ) ? text2 : text3 ) );
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    txtStatus.setText(String.format("%s: %s",
+                            text1,
+                            (CallBlockerService.isServiceCreated() ) ? text2 : text3 ) );
+                }
+            });
+
 
         }
     };
