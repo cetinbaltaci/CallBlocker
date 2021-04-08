@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CallBlocker</string>
+    <string name="app_name">Hang-up</string>
     <string name="title_activity_main">Arama Engelleme</string>
     <string name="title_activity_settings">Ayarlar</string>
 
@@ -11,11 +11,11 @@
     <string name="title_pref_incoming_call_domestic">Yurtiçi</string>
     <string name="title_pref_general_autostart">Açılışta otomatik çalıştırma</string>
     <string name="title_menu_settings">Ayarlar</string>
-    <string name="title_menu_startservice">Servisi Çalıştırma</string>
-    <string name="title_menu_stopservice">Servisi Durdurma</string>
+    <string name="title_menu_startservice">Servisi Çalıştır</string>
+    <string name="title_menu_stopservice">Servisi Durdur</string>
     <string name="title_menu_about">Hakkında</string>
 
-    <string name="text_about">Bu uygulama GPL lisanlı olarak yurtiçi ve/veya yurtdışı aramları otomatik engellemek(kapatma-meşgule alma) için yapılmıştır.\n\nHiçbir ticari amacı yoktur.</string>
+    <string name="text_about">Bu uygulama GPL lisanslı olarak yurtiçi ve/veya yurtdışı aramları otomatik engellemek(kapatma-meşgule alma) için yapılmıştır.\n\nHiçbir ticari amacı yoktur.</string>
     <string name="title_notification">Arama Engelleme</string>
     <string name="text_notification">Servis aktif.</string>
     <string name="text_notification_count">Engelenen arama sayısı</string>
